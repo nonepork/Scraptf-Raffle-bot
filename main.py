@@ -1,18 +1,22 @@
 # -*- coding: UTF-8 -*-
-
-import sys
-import time
 import json
 import random
+import sys
+import time
+
 from loguru import logger
-from seleniumbase import SB
 from selenium.webdriver.common.by import By
+from seleniumbase import SB
 
 logger.remove()
-logger.add(sys.stdout, format="[<light-green>{time:HH:mm:ss}</light-green>] <lvl>{message}</lvl>", level="INFO")
+logger.add(
+    sys.stdout,
+    format="[<light-green>{time:HH:mm:ss}</light-green>] <lvl>{message}</lvl>",
+    level="INFO",
+)
 
 
-def verify_cloudflare(sb): # not used yet
+def verify_cloudflare(sb):  # not used yet
     sb.assert_element('img[alt="Logo"]', timeout=4)
     sb.sleep(3)
 
@@ -84,7 +88,7 @@ def run():
                     )
                     logger.opt(colors=True).info(
                         "{raffle_title} <yellow>Already joined</yellow>",
-                        raffle_title=sb.get_title().replace(" - Scrap.TF Raffles", "")
+                        raffle_title=sb.get_title().replace(" - Scrap.TF Raffles", ""),
                     )
                 except Exception as e:
                     logger.exception(f"Error: {e}")
